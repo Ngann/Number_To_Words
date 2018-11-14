@@ -1,50 +1,22 @@
-class Fixnum
-  def num_length()
-    positions = []
-    length = Math.log10(self).to_i+1
-
-    if length == 1
-      position = "ones"
-    elsif length == 2
-      position = "tens"
-    elsif length == 3
-      position = "hundreds"
-    elsif length == 4
-      position = "thousands"
-    end
-    positions.push(position)
-  end
-end
-#   def num_to_string()
-#     num_array = self.
-#   # def num_to_array()
-#   #   num_array = Array.new(self) {|i| i+1}
-#   #   num_array.each do |number|
-#   #     if position
-#   #
-#   # end
-# end
-
 class String
   def num_to_words
-    ones = ["one","two","three","four"]
-    tens = ["ten", "eleven", "twelve", "thirteen"]
+    ones_array = ["one","two","three","four"]
+    tens_array = ["ten", "eleven", "twelve", "thirteen"]
     positions = []
     array = self.split("")
     length = array.length
     array.each do |i|
-      if length == 1
-        position = "ones"
-      elsif length == 2
-        position = "tens"
-      elsif length == 3
-        "hundreds"
-      elsif length == 4
-        position = "thousands"
+      if length <= 1
+        position = i + "ones"
+      elsif length <= 2
+        position = i + "tens"
+      elsif length <= 3
+        position = i + "hundreds"
+      elsif length <= 4
+        position = array[0] + "thousand" + array[1] + "hundred" + array[2] + array[3]
       end
-      positions.push([i])
+      return position
     end
-    positions
   end
 
   def replace_words
@@ -54,11 +26,11 @@ class String
     array = self.split("")
     array.each do |i|
       if i == "1"
-        i = ones(i)
+        number = "one"
       elsif i =="2"
-        i = tens(i)
+        number = "ten"
       end
-      new_array.push(i)
+      new_array.push(number)
     end
     new_array
   end
