@@ -27,6 +27,8 @@ end
 
 class String
   def num_to_words
+    ones = ["one","two","three","four"]
+    tens = ["ten", "eleven", "twelve", "thirteen"]
     positions = []
     array = self.split("")
     length = array.length
@@ -43,5 +45,21 @@ class String
       positions.push([i])
     end
     positions
+  end
+
+  def replace_words
+    ones = ["one","two","three","four"]
+    tens = ["ten", "eleven", "twelve", "thirteen"]
+    new_array = []
+    array = self.split("")
+    array.each do |i|
+      if i == "1"
+        i = ones(i)
+      elsif i =="2"
+        i = tens(i)
+      end
+      new_array.push(i)
+    end
+    new_array
   end
 end
