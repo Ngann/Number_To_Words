@@ -1,37 +1,35 @@
 class String
   def num_to_words
-    ones_array = ["one","two","three","four"]
+    ones_array = ["one","two","three","four","five", "six", "seven", "eight", "nine"]
     tens_array = ["ten", "eleven", "twelve", "thirteen"]
+    twenty_to_ninety = ["twenty", "thirty", "fourty","fifty","sixty","seventy", "eigthty", "ninety"]
     positions = []
     array = self.split("")
     length = array.length
-    array.each do |i|
+    array.each do |number|
       if length <= 1
-        position = i + "ones"
-      elsif length <= 2
-        position = i + "tens"
+        number = number.to_i
+        words = ones_array[number - 1]
+      elsif (length <= 2) & (array[0] == "1")
+        number = array[1].to_i
+        words = tens_array[number]
+      elsif (length <= 2) & (array[0] != "1")
+        number_one = array[0].to_i
+        number_two = array[1].to_i
+        words = twenty_to_ninety[number_one-2] + ones_array[number_two - 1]
       elsif length <= 3
-        position = i + "hundreds"
+        number_one = array[0].to_i
+        number_two = array[1].to_i
+        number_three = array[3].to_i
+        words = ones_array[number_one - 1] + "hundred" + twenty_to_ninety[number_one-2] + ones_array[number_one - 1]
       elsif length <= 4
-        position = array[0] + "thousand" + array[1] + "hundred" + array[2] + array[3]
+        number_one = array[0].to_i
+        number_two = array[1].to_i
+        number_three = array[3].to_i
+        number_four = array[4].to_i
+        words = ones_array[number_one - 1] + "thousand" + ones_array[number_two - 1] + "hundred" + twenty_to_ninety[number_three-2] + ones_array[number_four - 1]
       end
-      return position
+      return words
     end
-  end
-
-  def replace_words
-    ones = ["one","two","three","four"]
-    tens = ["ten", "eleven", "twelve", "thirteen"]
-    new_array = []
-    array = self.split("")
-    array.each do |i|
-      if i == "1"
-        number = "one"
-      elsif i =="2"
-        number = "ten"
-      end
-      new_array.push(number)
-    end
-    new_array
   end
 end
