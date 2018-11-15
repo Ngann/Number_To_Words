@@ -4,14 +4,21 @@ require('pry')
 
 describe('#number_to_words') do
 
- it("returns the position of the number ") do
-   expect(1.num_to_words()).to(eq(["ones"]))
+ it("returns the number in written format") do
+   expect("1".num_to_words()).to(eq("one"))
  end
 
- it("returns the position of the number ") do
-   expect(12.num_to_words()).to(eq(["ones", "tens"]))
+ it("returns the number in written format") do
+   expect("12".num_to_words()).to(eq("twelve"))
  end
 
+ it("returns the number in written format") do
+   expect("99".num_to_words()).to(eq("ninetynine"))
+ end
+
+ it("returns the number in written format") do
+   expect("90".num_to_words()).to(eq("ninety"))
+ end
 end
 
 
